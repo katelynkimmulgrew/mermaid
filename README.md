@@ -7,15 +7,14 @@ The Little Mermaid is a very popular fairy tale, thanks to the combined fame of 
 
 That is why I wish to create a user-based website.  It will have one page which is maintained only by the administrator, me, which is viewable to the public.  This has a list of all known Little Mermaid adaptations - information like the title, director, country of origin, along with a link to a more descriptive site about that adaptation.  Then I would like a seperate list available only to users in which they can add a suggested adaptation for me to then look at to consider to add to the public official adaptation list.
 
+There will be a seperate special user, the administrator, which can block users if their suggestions are inappropriate or repetitive, and can take adaptations from the suggested list and add them to the official list.
+
 
 ## Data Model
 
-(Describe the documents that you'll be storing - assuming that you're using a document based NoSQL database, like mongoose ... this can be in the form of commented plain JavaScript objects or an _actual_ Mongoose schema)
+Using NoSQL Mongo and Mongoose
 
-Minimally, we'll have to store Users, Lists and Items
-
-* users can have multiple lists
-* each list can have multiple items
+Minimally, we'll have to store Users, a list of suggestions, and the official list
 
 First draft schema:
 
@@ -74,3 +73,43 @@ var SuggestedList = new mongoose.Schema({
 
 ![site map](img/siteMap.jpg)
 
+## List of pages
+
+* Welcome Page
+* About Page
+* Form to suggest an adaptation - viewable only to users
+* Form to log in
+* Form to register
+* You Are Logged In - viewable only to users
+* Official Adaptations Page: includes form to sort adaptations by country of origin
+* Suggested Adaptations Page - viewable only to users
+
+## Research
+
+* (1 pt) Integrate visual Effects
+&nbsp;&nbsp; This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.
+
+* (1 pt) Concatenation and minification of CSS and Javascript Files
+** What is it?
+** Any theoretical underpinnings worth mentioning?
+** Why use it?
+** List of possible candidate modules or solutions
+
+* (3 pt) Integrate user authentification
+&nbsp;&nbsp; This allows for the site to have authorized users as well as public users.  
+** What is it?
+** Any theoretical underpinnings worth mentioning?
+** Why use it?
+** List of possible candidate modules or solutions
+
+* (1 pt) Use a CSS framework throughout site, customize
+** What is it?
+** Any theoretical underpinnings worth mentioning?
+** Why use it?
+** List of possible candidate modules or solutions
+
+* (2 pt) Client side form validation
+** What is it?
+** Any theoretical underpinnings worth mentioning?
+** Why use it?
+** List of possible candidate modules or solutions
