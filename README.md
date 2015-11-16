@@ -87,29 +87,16 @@ var SuggestedList = new mongoose.Schema({
 ## Research
 
 * (1 pt) Integrate visual Effects
-&nbsp;&nbsp; This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.
+ This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.
 
 * (1 pt) Concatenation and minification of CSS and Javascript Files
-** What is it?
-** Any theoretical underpinnings worth mentioning?
-** Why use it?
-** List of possible candidate modules or solutions
+Concatenation and minification of CSS and Javascript files happens when you get rid of all newlines and condense each of the files into a .min file.  Machines don't need reader-friendly newlines, so this allows your program to run faster without any cost.  There are many minifiers out there.  For javascript files I will probably use JSMin, and for CSS perhaps YUI Compressor.  
 
 * (3 pt) Integrate user authentification
-&nbsp;&nbsp; This allows for the site to have authorized users as well as public users.  
-** What is it?
-** Any theoretical underpinnings worth mentioning?
-** Why use it?
-** List of possible candidate modules or solutions
+This allows for the site to have authorized users as well as public users.  I want this for my site so I can regulate submissions to the suggestions list and so the suggestions list is not public.  I will use TLS/SSL.  I will use the node modules passport, passport-local, passport-local-mongoose, and express-session.  I will use a flag in order to determine which user is the administrator.
 
 * (1 pt) Use a CSS framework throughout site, customize
-** What is it?
-** Any theoretical underpinnings worth mentioning?
-** Why use it?
-** List of possible candidate modules or solutions
+This is the use of an already built CSS file to gain some features easily without having to build from the ground up.  Often this means linking to a given css file.  This is user friendly.  In addition, it is easy to customize, so your website can still look individual.  I will be using bootstrap.
 
 * (2 pt) Client side form validation
-** What is it?
-** Any theoretical underpinnings worth mentioning?
-** Why use it?
-** List of possible candidate modules or solutions
+This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript and html.  
