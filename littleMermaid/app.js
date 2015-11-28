@@ -6,11 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require('./db');
 require('./auth');
+var passport = require('passport');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 
 var app = express();
+
+var session = require('express-session');
+var sessionOptions = {
+  secret: 'secret cookie thang (store this elsewhere!)',
+  resave: true,
+  saveUninitialized: true
+};
+app.use(session(sessionOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

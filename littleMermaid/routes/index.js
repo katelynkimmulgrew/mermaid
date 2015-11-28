@@ -9,4 +9,20 @@ router.get('/about', function(req, res) {
 	res.render('about');
 });
 
+router.get('/littleMermaid/adaptations', function(req, res) {
+	var OfficialList = OfficialList.find({}, function(err, adaptations, count) {
+		res.render('adaptations', {adaptations: adaptations});
+	}
+	
+});
+
+router.get('/about', function(req, res) {
+	res.render('about');
+});
+
+router.get('/permissionDenied', function(req, res) {
+	res.render('permissionDenied');
+});
+
+
 module.exports = router;
