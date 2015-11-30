@@ -12,7 +12,7 @@ router.get('/about', function(req, res) {
 router.get('/littleMermaid/adaptations', function(req, res) {
 	var OfficialList = OfficialList.find({}, function(err, adaptations, count) {
 		res.render('adaptations', {adaptations: adaptations});
-	}
+	});
 	
 });
 

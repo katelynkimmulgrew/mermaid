@@ -78,21 +78,21 @@ router.get('/suggest', function(req, res, next) {
 
 router.post('/suggest', function(req, res, next) {
 	if (req.user) {
- 	req.session.name: req.body.name;
-  	req.session.screenWriter: req.body.screenWriter;
-  	req.session.director: req.body.director;
-  	req.session.country: req.body.country;
-  	req.session.year: req.body.year;
-  	req.session.link: req.body.link;
+ 	req.session.name = req.body.name;
+  	req.session.screenWriter =  req.body.screenWriter;
+  	req.session.director = req.body.director;
+  	req.session.country =  req.body.country;
+  	req.session.year =  req.body.year;
+  	req.session.link = req.body.link;
 	var newAdaptation = new OfficialList({
-		user: req.user;
-  		dateSubmitted: Date.now();
-		req.session.name;
-  		req.session.screenWriter;
-  		req.session.director;
-  		req.session.country;
-  		req.session.year;
-  		req.session.link;
+		user: req.user,
+  		dateSubmitted: Date.now(),
+		req.session.name,
+  		req.session.screenWriter,
+  		req.session.director,
+  		req.session.country,
+  		req.session.year,
+  		req.session.link
 	});
 	newAdaptation.save(function(err,lists,count) {
 		
