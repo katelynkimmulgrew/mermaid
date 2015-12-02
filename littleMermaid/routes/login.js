@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
+passport = require('passport'),
+mongoose = require('mongoose'),
+User = mongoose.model('User');
+
 var isAdmin = false;
 
 router.get('/in', function(req, res) {
-  res.render('in');
+	if (req.user) {
+		res.render('in');
+	}
+  else {
+  	res.redirect(303, '/permissionDenied');
+  }
 });
 
 router.get('/', function(req, res) {
@@ -87,12 +96,12 @@ router.post('/suggest', function(req, res, next) {
 	var newAdaptation = new OfficialList({
 		user: req.user,
   		dateSubmitted: Date.now(),
-		req.session.name,
-  		req.session.screenWriter,
-  		req.session.director,
-  		req.session.country,
-  		req.session.year,
-  		req.session.link
+		name:req.session.name,
+  		screenwriter: req.session.screenWriter,
+  		director: req.session.director,
+  		country: req.session.country,
+  		year: req.session.year,
+  		link: req.session.link
 	});
 	newAdaptation.save(function(err,lists,count) {
 		
