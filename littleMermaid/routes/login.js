@@ -3,12 +3,14 @@ var router = express.Router();
 passport = require('passport'),
 mongoose = require('mongoose'),
 User = mongoose.model('User');
+OfficialList = mongoose.model('OfficialList');
+SuggestedList = mongoose.model('SuggestedList');
 
 var isAdmin = false;
 
 router.get('/in', function(req, res) {
 	if (req.user) {
-		res.render('in');
+		res.render('in', {admin: req.user.username=="admin"});
 	}
   else {
   	res.redirect(303, '/permissionDenied');
@@ -19,12 +21,14 @@ router.get('/', function(req, res) {
   res.render('login');
 });
 
-router.post('/login', function(req,res,next) {
+router.post('/', function(req,res,next) {
   // NOTE: use the custom version of authenticate so that we can
   // react to the authentication result... and so that we can
   // propagate an error back to the frontend without using flash
   // messages
+  console.log("authenticate");
   passport.authenticate('local', function(err,user) {
+console.log("within authenticate");
     if(user) {
       // NOTE: using this version of authenticate requires us to
       // call login manually
@@ -35,6 +39,7 @@ router.post('/login', function(req,res,next) {
         res.redirect('/login/in');
       });
     } else {
+    	console.log("else");
       res.render('login', {message:'Your login or password is incorrect.'});
     }
   })(req, res, next);
@@ -42,6 +47,7 @@ router.post('/login', function(req,res,next) {
   // we call immediately! See custom callback section of docs:
   // http://passportjs.org/guide/authenticate/
 });
+
 
 router.get('/register', function(req, res) {
   res.render('register');
@@ -52,7 +58,7 @@ router.post('/register', function(req, res) {
       req.body.password, function(err, user){
     if (err) {
       // NOTE: error? send message back to registration...
-      res.render('register',{message:'Your registration information is not valid'});
+      res.render('register',{message: err});//'Your registration information is not valid'});
     } else {
       // NOTE: once you've registered, you should be logged in automatically
       // ...so call authenticate if there's no error
@@ -75,6 +81,35 @@ router.get('/suggestionsList', function(req, res, next) {
   }
 });
 
+router.post('maintain/check', function(req,res) {
+	console.log(checkedItems);
+	var checkedItems = req.body.checkbox;
+	if(typeof checkedItems === "string") {
+		var SuggestionsList = SuggestedList.find({director:checkedItems}, function(err, suggestedAdaptations, count) {
+			var newAdaptation = new OfficialList({
+		user: suggestedAdaptations.user,
+  		screenwriter: suggestedAdaptations.screenWriter,
+  		director: suggestedAdaptations.director,
+  		country: suggestedAdaptations.country,
+  		year: suggestedAdaptations.year,
+  		link: suggestedAdaptations.link
+	});
+	newAdaptation.save(function(err,lists,count) {
+		if(err) {
+			res.send(err);
+		}
+		
+	});
+	});
+		SuggestedList.find({director:checkedItems}).remove().exec;
+		res.redirect(303,'/login/maintain');
+	
+	}
+	else {
+		res.send("Please Check only one at a time");
+	}
+});
+
 //only meant for users
 router.get('/suggest', function(req, res, next) {
 	if (req.user) {
@@ -87,25 +122,33 @@ router.get('/suggest', function(req, res, next) {
 
 router.post('/suggest', function(req, res, next) {
 	if (req.user) {
+		//console.log(req.body);
+		/*
  	req.session.name = req.body.name;
   	req.session.screenWriter =  req.body.screenWriter;
   	req.session.director = req.body.director;
   	req.session.country =  req.body.country;
   	req.session.year =  req.body.year;
   	req.session.link = req.body.link;
-	var newAdaptation = new OfficialList({
+  	*/
+	var newAdaptation = new SuggestedList({
 		user: req.user,
   		dateSubmitted: Date.now(),
-		name:req.session.name,
-  		screenwriter: req.session.screenWriter,
-  		director: req.session.director,
-  		country: req.session.country,
-  		year: req.session.year,
-  		link: req.session.link
+		name:req.body.name,
+  		screenwriter: req.body.screenWriter,
+  		director: req.body.director,
+  		country: req.body.country,
+  		year: req.body.year,
+  		link: req.body.link
 	});
 	newAdaptation.save(function(err,lists,count) {
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.redirect(303, '/login/suggestionsList');
+		}
 		
-		res.redirect(303, '/login/suggestionsList');
 	});
 }
 else {
@@ -115,8 +158,16 @@ else {
 
 //only meant for admin
 router.get('/maintain', function(req, res, next) {
-	if (req.user&&isAdmin==true) {
-		res.render('maintain');
+	
+	if (req.user&&(req.user.username=="admin")) {//isAdmin==true) {
+	var OfficialList2 = OfficialList.find({}, function(err, officialAdaptations, count) {
+		
+	var SuggestionsList = SuggestedList.find({}, function(err, suggestedAdaptations, count) {
+		
+	
+		res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations} );
+		});
+	});
 	} 
   else {
   	res.redirect(303, '/permissionDenied');

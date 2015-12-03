@@ -12,12 +12,12 @@ User.plugin(passportLocalMongoose);
 // * includes the information about each adaptation
 // * ideally I could have the link section be a list of links (how would this be done?)
 var OfficialList = new mongoose.Schema({
-  name: {type: String, required: true},
-  screenWriter: {type: String, required: true},
-  director: {type: String, required: true},
-  country: {type: String, required: true},
-  year: {type: Number, required: true},
-  link: {type: String, required: true},
+  name: {type: String},
+  screenWriter: {type: String},
+  director: {type: String},
+  country: {type: String},
+  year: {type: Number},
+  link: {type: String},
 	
 });
 
@@ -27,13 +27,13 @@ var OfficialList = new mongoose.Schema({
 // * ideally I could have the link section be a list of links (how would this be done?)
 var SuggestedList = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  dateSubmitted: {type: Date, required: true},
-  name: {type: String, required: true},
-  screenWriter: {type: String, required: true},
-  director: {type: String, required: true},
-  country: {type: String, required: true},
-  year: {type: Number, required: true},
-  link: {type: String, required: true},
+  dateSubmitted: {type: Date},
+  name: {type: String},
+  screenWriter: {type: String},
+  director: {type: String},
+  country: {type: String},
+  year: {type: Number},
+  link: {type: String},
 	
 });
 
