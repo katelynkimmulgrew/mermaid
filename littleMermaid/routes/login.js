@@ -26,9 +26,9 @@ router.post('/', function(req,res,next) {
   // react to the authentication result... and so that we can
   // propagate an error back to the frontend without using flash
   // messages
-  console.log("authenticate");
+  
   passport.authenticate('local', function(err,user) {
-console.log("within authenticate");
+
     if(user) {
       // NOTE: using this version of authenticate requires us to
       // call login manually
@@ -81,15 +81,38 @@ router.get('/suggestionsList', function(req, res, next) {
   }
 });
 
-router.post('maintain/check', function(req,res) {
-	console.log(checkedItems);
-	var checkedItems = req.body.checkbox;
+router.post('/maintain/add', function(req,res) {
+	var newAdaptation = new OfficialList({
+		name: req.body.name,
+  		screenWriter: req.body.screenWriter,
+  		director: req.body.director,
+  		company: req.body.company,
+  		country: req.body.country,
+  		year: req.body.year,
+  		link: req.body.link
+	});
+	newAdaptation.save(function(err,lists,count) {
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.redirect(303, '/login/maintain');
+		}
+		
+	});
+});
+
+router.post('/maintain/check', function(req,res) {
+	
+	var checkedItems = req.body.radio;
+	//console.log(checkedItems);
 	if(typeof checkedItems === "string") {
-		var SuggestionsList = SuggestedList.find({director:checkedItems}, function(err, suggestedAdaptations, count) {
+		var SuggestionsList = SuggestedList.findOne({director:checkedItems}, function(err, suggestedAdaptations, count) {
 			var newAdaptation = new OfficialList({
-		user: suggestedAdaptations.user,
-  		screenwriter: suggestedAdaptations.screenWriter,
+		name: suggestedAdaptations.name,
+  		screenWriter: suggestedAdaptations.screenWriter,
   		director: suggestedAdaptations.director,
+  		company: suggestedAdaptations.company,
   		country: suggestedAdaptations.country,
   		year: suggestedAdaptations.year,
   		link: suggestedAdaptations.link
@@ -100,8 +123,12 @@ router.post('maintain/check', function(req,res) {
 		}
 		
 	});
+
 	});
-		SuggestedList.find({director:checkedItems}).remove().exec;
+	SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
+		console.log(err);
+
+	});//.remove().exec;
 		res.redirect(303,'/login/maintain');
 	
 	}
@@ -134,9 +161,10 @@ router.post('/suggest', function(req, res, next) {
 	var newAdaptation = new SuggestedList({
 		user: req.user,
   		dateSubmitted: Date.now(),
-		name:req.body.name,
-  		screenwriter: req.body.screenWriter,
+		name: req.body.name,
+  		screenWriter: req.body.screenWriter,
   		director: req.body.director,
+  		company: req.body.company,
   		country: req.body.country,
   		year: req.body.year,
   		link: req.body.link
