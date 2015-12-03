@@ -15,11 +15,22 @@
 {{/each}}
 </ul>
 
+<form method="POST" action="/login/maintain/add">
+title <input type="text" name="name">
+director <input type="text" name="director">
+screenwriter <input type="text" name="screenWriter">
+company <input type="text" name="company">
+country <input type="text" name="country">
+year <input type="number" name="year">
+link <input type="string" name="link">
+<input type="submit">
+</form>
+
 <p>List Sugggestions with checkmarks</p>
 <form method="POST" action="/login/maintain/check">
 <ul>
 {{#each suggestedAdaptations}}
-<input type="checkbox"  name="check" value = "{{director}}" ><li>
+<input type="radio"  name="radio" value = "{{director}}" ><li>
 	<ul>
   <li>name: {{name}}</li>
   <li>screenWriter: {{screenWriter}},</li>
@@ -31,8 +42,9 @@
   </li></input>
 {{/each}}
 </ul>
-</form>
 <input type="submit">
+</form>
+Remove From Suggestions and Add to Official List
 
 Submission box to remove and block
 submission box to remove from suggestions list and add to official list
