@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+mongoose = require('mongoose');
+OfficialList = mongoose.model('OfficialList');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,7 +12,7 @@ router.get('/about', function(req, res) {
 });
 
 router.get('/littleMermaid/adaptations', function(req, res) {
-	var OfficialList = OfficialList.find({}, function(err, adaptations, count) {
+	var OfficialList2 = OfficialList.find({}, function(err, adaptations, count) {
 		res.render('adaptations', {adaptations: adaptations});
 	});
 	

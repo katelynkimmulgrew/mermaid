@@ -1,4 +1,38 @@
-Original List
-List Sugggestions with checkmarks
+<p>Original List</p>
+
+<ul>
+{{#each officialAdaptations}}
+<li>
+	<ul>
+  <li>name: {{name}}</li>
+  <li>screenWriter: {{screenWriter}},</li>
+  <li>director: {{director}},</li>
+  <li>country: {{country}},</li>
+  <li>year: {{year}},</li>
+  <li>link: <a href="{{link}}">Click Here</a></li>
+  </ul>
+  </li>
+{{/each}}
+</ul>
+
+<p>List Sugggestions with checkmarks</p>
+<form method="POST" action="/login/maintain/check">
+<ul>
+{{#each suggestedAdaptations}}
+<input type="checkbox"  name="check" value = "{{director}}" ><li>
+	<ul>
+  <li>name: {{name}}</li>
+  <li>screenWriter: {{screenWriter}},</li>
+  <li>director: {{director}},</li>
+  <li>country: {{country}},</li>
+  <li>year: {{year}},</li>
+  <li>link: <a href="{{link}}">Click Here</a></li>
+  </ul>
+  </li></input>
+{{/each}}
+</ul>
+</form>
+<input type="submit">
+
 Submission box to remove and block
 submission box to remove from suggestions list and add to official list
