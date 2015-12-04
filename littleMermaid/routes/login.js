@@ -93,7 +93,7 @@ router.post('/maintain/add', function(req,res) {
 	});
 	newAdaptation.save(function(err,lists,count) {
 		if(err) {
-			res.send(err);
+			res.send("Enter All Required Fields");
 		}
 		else {
 			res.redirect(303, '/login/maintain');
@@ -119,7 +119,7 @@ router.post('/maintain/check', function(req,res) {
 	});
 	newAdaptation.save(function(err,lists,count) {
 		if(err) {
-			res.send(err);
+			res.send("Enter All Required Fields");
 		}
 		
 	});
