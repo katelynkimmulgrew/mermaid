@@ -13,12 +13,12 @@ User.plugin(passportLocalMongoose);
 // * ideally I could have the link section be a list of links (how would this be done?)
 var OfficialList = new mongoose.Schema({
   name: {type: String},
-  screenWriter: {type: String},
-  director: {type: String},
-  company: {type: String},
-  country: {type: String},
-  year: {type: Number},
-  link: {type: String},
+  screenWriter: {type: String, required:true},
+  director: {type: String, required:true},
+  company: {type: String, required:true},
+  country: {type: String, required:true},
+  year: {type: Number, required:true},
+  link: {type: String, required:true},
 	
 });
 
@@ -27,15 +27,15 @@ var OfficialList = new mongoose.Schema({
 // * every suggestion has a date submitted so I the administrator can view them in order submitted
 // * ideally I could have the link section be a list of links (how would this be done?)
 var SuggestedList = new mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  dateSubmitted: {type: Date},
-  name: {type: String},
-  screenWriter: {type: String},
-  director: {type: String},
-  company: {type: String},
-  country: {type: String},
-  year: {type: Number},
-  link: {type: String},
+  user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required:true},
+  dateSubmitted: {type: Date, required:true},
+  name: {type: String, required:true},
+  screenWriter: {type: String, required:true},
+  director: {type: String, required:true},
+  company: {type: String, required:true},
+  country: {type: String, required:true},
+  year: {type: Number, required:true},
+  link: {type: String, required:true},
 	
 });
 
