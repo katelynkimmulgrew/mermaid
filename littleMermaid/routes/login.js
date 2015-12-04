@@ -10,7 +10,7 @@ var isAdmin = false;
 
 router.get('/in', function(req, res) {
 	if (req.user) {
-		res.render('in', {admin: req.user.username=="admin"});
+		res.render('in', {admin: req.user.username=="admin", title: 'You are Logged In'});
 	}
   else {
   	res.redirect(303, '/permissionDenied');
@@ -18,7 +18,7 @@ router.get('/in', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-  res.render('login');
+  res.render('login', {title: 'Log In'});
 });
 
 router.post('/', function(req,res,next) {
@@ -40,7 +40,7 @@ router.post('/', function(req,res,next) {
       });
     } else {
     	console.log("else");
-      res.render('login', {message:'Your login or password is incorrect.'});
+      res.render('login', {message:'Your login or password is incorrect.', title: 'Log In'});
     }
   })(req, res, next);
   // NOTE: notice that this form of authenticate returns a function that
@@ -50,7 +50,7 @@ router.post('/', function(req,res,next) {
 
 
 router.get('/register', function(req, res) {
-  res.render('register');
+  res.render('register', {title: 'Register'});
 });
 
 router.post('/register', function(req, res) {
@@ -58,7 +58,7 @@ router.post('/register', function(req, res) {
       req.body.password, function(err, user){
     if (err) {
       // NOTE: error? send message back to registration...
-      res.render('register',{message: err});//'Your registration information is not valid'});
+      res.render('register',{message: err, title:'Register'});//'Your registration information is not valid'});
     } else {
       // NOTE: once you've registered, you should be logged in automatically
       // ...so call authenticate if there's no error
@@ -73,7 +73,7 @@ router.post('/register', function(req, res) {
 router.get('/suggestionsList', function(req, res, next) {
 	if (req.user) {
 		var SuggestionsList = SuggestedList.find({}, function(err, suggestedAdaptations, count) {
-		res.render('suggestionsList', {suggestedAdaptations: suggestedAdaptations});
+		res.render('suggestionsList', {suggestedAdaptations: suggestedAdaptations, title: 'Suggested Adaptations'});
 	});
 	}
 	else {
@@ -140,7 +140,7 @@ router.post('/maintain/check', function(req,res) {
 //only meant for users
 router.get('/suggest', function(req, res, next) {
 	if (req.user) {
-		res.render('suggest');
+		res.render('suggest', {title: 'Suggest an Adaptation'});
 	}
   else {
   	res.redirect(303, '/permissionDenied');
@@ -193,7 +193,7 @@ router.get('/maintain', function(req, res, next) {
 	var SuggestionsList = SuggestedList.find({}, function(err, suggestedAdaptations, count) {
 		
 	
-		res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations} );
+		res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations, title: 'Admin Maintainence'} );
 		});
 	});
 	} 
