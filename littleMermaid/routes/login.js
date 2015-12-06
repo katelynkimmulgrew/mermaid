@@ -28,11 +28,16 @@ router.post('/', function(req,res,next) {
   // messages
   
   passport.authenticate('local', function(err,user) {
-
+  	if(err) {
+  		res.send("An error occurred");
+  	}
     if(user) {
       // NOTE: using this version of authenticate requires us to
       // call login manually
       req.logIn(user, function(err) {
+      	if(err) {
+      		res.send("An error occurred");
+      	}
       	if(user.username=="admin" && user.password=="securePassword") {
       		isAdmin==true;
       	}
@@ -73,6 +78,9 @@ router.post('/register', function(req, res) {
 router.get('/suggestionsList', function(req, res, next) {
 	if (req.user) {
 		var SuggestionsList = SuggestedList.find({}, function(err, suggestedAdaptations, count) {
+		if(err) {
+			res.send("An error occurred");
+		}
 		res.render('suggestionsList', {suggestedAdaptations: suggestedAdaptations, title: 'Suggested Adaptations'});
 	});
 	}
@@ -108,6 +116,9 @@ router.post('/maintain/check', function(req,res) {
 	//console.log(checkedItems);
 	if(typeof checkedItems === "string") {
 		var SuggestionsList = SuggestedList.findOne({director:checkedItems}, function(err, suggestedAdaptations, count) {
+			if(err) {
+				res.send("An error occurred");
+			}
 			var newAdaptation = new OfficialList({
 		name: suggestedAdaptations.name,
   		screenWriter: suggestedAdaptations.screenWriter,
@@ -126,7 +137,9 @@ router.post('/maintain/check', function(req,res) {
 
 	});
 	SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
-		console.log(err);
+		if(err) {
+			res.send("An error occurred");
+		}
 
 	});//.remove().exec;
 		res.redirect(303,'/login/maintain');
@@ -171,7 +184,7 @@ router.post('/suggest', function(req, res, next) {
 	});
 	newAdaptation.save(function(err,lists,count) {
 		if(err) {
-			res.send(err);
+			res.send("An error occurred");
 		}
 		else {
 			res.redirect(303, '/login/suggestionsList');
@@ -189,9 +202,14 @@ router.get('/maintain', function(req, res, next) {
 	
 	if (req.user&&(req.user.username=="admin")) {//isAdmin==true) {
 	var OfficialList2 = OfficialList.find({}, function(err, officialAdaptations, count) {
+		if(err) {
+			res.send("An error occurred");
+		}
 		
 	var SuggestionsList = SuggestedList.find({}, function(err, suggestedAdaptations, count) {
-		
+		if(err) {
+			res.send("An error occurred");
+		}
 	
 		res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations, title: 'Admin Maintainence'} );
 		});

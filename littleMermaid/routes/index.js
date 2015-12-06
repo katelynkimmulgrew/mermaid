@@ -15,20 +15,36 @@ router.get('/about', function(req, res) {
 
 router.get('/littleMermaid/adaptations', function(req, res) {
 	var OfficialList2 = OfficialList.find({}, function(err, adaptations, count) {
-		res.render('adaptations', {adaptations: adaptations, title: 'List of Adaptations'});
+		if(err) {
+			res.send("An error occurred");
+		}
+		if(req.user) {
+		res.render('adaptations', {adaptations: adaptations, title: 'List of Adaptations', user: req.user, admin: req.user.username=="admin"});
+	}
+	else {
+		res.render('adaptations', {adaptations: adaptations, title: 'List of Adaptations', user: false, admin: false});
+	}
+		
 	});
 	
 });
 
 router.get('/littleMermaid/adaptations/search', function(req,res) {
-	
-	res.render('search',{title: 'Search by Country', user: req.user, admin: req.user.username=="admin"});
+	if(req.user) {
+		res.render('search',{title: 'Search by Country', user: req.user, admin: req.user.username=="admin"});
+	}
+	else {
+		res.render('search',{title: 'Search by Country', user: false, admin: false});
+	}
 	
 	
 });
 
 router.get('/searchQuery', function(req, res, next) {
   var OfficialList3 = OfficialList.find({}, function(err, adaptations, count) {
+  	if(err) {
+  		res.send("An error occurred")
+  	}
     res.json(adaptations.map(function(a) {
       return {
       'name': a.name,
