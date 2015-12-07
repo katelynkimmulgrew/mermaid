@@ -4,4 +4,13 @@ Input Country of Origin, and we'll give you a list of titles, year, and a link.
 <button id="country-submit">Send</button>
 </div>
 <div id="answer"></div>
+<a href = "/littleMermaid/adaptations">Go to Official Adaptations List</a>
+{{#if user}}
+<div><a href="login/suggest">Suggest</a> | <a href="login/suggestionsList">Suggestions List</a></div>
+{{else}}
+<div><a href="/login">Log In</a> | <a href="/login/register">Register</a></div>
+{{/if}}
+{{#if admin}}
+<a href = "/login/maintain">Maintain</a>
+{{/if}}
 <script src='/javascripts/ajaxSearch.js'></script>

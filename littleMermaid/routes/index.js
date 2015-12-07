@@ -60,7 +60,14 @@ router.get('/searchQuery', function(req, res, next) {
 });
 
 router.get('/permissionDenied', function(req, res) {
-	res.render('permissionDenied', {title: 'Permission Denied'});
+	if(req.user) {
+		res.render('permissionDenied', {title: 'Permission Denied', user: req.user, admin: req.user.username=="admin"});
+		
+	}
+	else {
+		res.render('permissionDenied', {title: 'Permission Denied', user: false, admin: false});
+	}
+	
 });
 
 
