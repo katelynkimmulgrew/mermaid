@@ -92,7 +92,7 @@ Note: The admin page no longer has remove from official list or remove from sugg
 ## Research
 
 * (1 pt) Integrate visual Effects
- This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.
+ This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.  Note:  My effects are 1) links that wiggle 2) when a page loads the body fades in and 3) drop shadow on h1.
 
 * (1 pt) Concatenation and minification of CSS and Javascript Files
 Concatenation and minification of CSS and Javascript files happens when you get rid of all newlines and condense each of the files into a .min file.  Machines don't need reader-friendly newlines, so this allows your program to run faster without any cost.  There are many minifiers out there.  For javascript files I will probably use JSMin, and for CSS perhaps YUI Compressor.  Note:  Did not concatenate jquery files with the files I wrote myself.
@@ -104,7 +104,7 @@ This allows for the site to have authorized users as well as public users.  I wa
 This allows for ease of layout styling.  For instance, a variable can be assigned to a color or line of text which than can be reused.  I am using SASS.
 
 * (2 pt) Client side form validation
-This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript and html.  
+This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript (like jquery) and html.  
 
 ## Nota Bene
 
