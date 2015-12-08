@@ -12,7 +12,8 @@ function handleClick() {
   
   req.open('GET',url,true);
   var answerInnerHTML = '';
-  req.addEventListener('load', function() {
+  req.addEventListener('load', function(evt) {
+    evt.preventDefault();
     if (req.status >= 200 && req.status <= 400) {
       var adaptations = JSON.parse(req.responseText);
       for(var i=0;i<adaptations.length;i++) {
