@@ -35,6 +35,7 @@ var OfficialList = new mongoose.Schema({
   screenWriter: {type: String, required: true},
   director: {type: String, required: true},
   country: {type: String, required: true},
+  company: {type: String, required: true},
   year: {type: Number, required: true},
   link: {type: String, required: true},
 	
@@ -51,6 +52,7 @@ var SuggestedList = new mongoose.Schema({
   screenWriter: {type: String, required: true},
   director: {type: String, required: true},
   country: {type: String, required: true},
+  company: {type: String, required: true},
   year: {type: Number, required: true},
   link: {type: String, required: true},
 	
@@ -66,8 +68,8 @@ var SuggestedList = new mongoose.Schema({
 * as a visitor, I want to view the adaptations list so I know what to watch
 * as a registered user, I want to add an adaptation to the suggested list for consideration
 * as a visitor, I want to register so I can add adaptations to the suggested list for consideration
-* as a visitor, I want to sort the ist of adaptations by country of origin
-* as the administrator, I want to remove suggestions from the suggestions list and maybe add them to the official list
+* as a visitor, I want to search through the list of adaptations by country of origin
+* as the administrator, I want to remove suggestions from the suggestions list and add them to the official list
 
 ## Site Map
 
@@ -75,14 +77,16 @@ var SuggestedList = new mongoose.Schema({
 
 ## List of pages
 
-* Welcome Page
-* About Page
-* Form to suggest an adaptation - viewable only to users
-* Form to log in
-* Form to register
-* You Are Logged In - viewable only to users
-* Official Adaptations Page: includes form to sort adaptations by country of origin
-* Suggested Adaptations Page - viewable only to users
+* [Welcome Page](http://i6.cims.nyu.edu:10410/)
+* [About Page](http://i6.cims.nyu.edu:10410/about)
+* [Form to suggest an adaptation](http://i6.cims.nyu.edu:10410/login/suggest) - viewable only to users
+* [Form to log in](http://i6.cims.nyu.edu:10410/login)
+* [Form to register](http://i6.cims.nyu.edu:10410/login/register)
+* [You Are Logged In](http://i6.cims.nyu.edu:10410/login/in) - viewable only to users
+* [Official Adaptations Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations)
+* [Suggested Adaptations Page](http://i6.cims.nyu.edu:10410/login/suggestionsList) - viewable only to users
+* [Search by Country Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations/search)
+* [Maintain: The administrator page](http://i6.cims.nyu.edu:10410/login/maintain) - viewable only to administrator
 
 ## Research
 
@@ -95,8 +99,12 @@ Concatenation and minification of CSS and Javascript files happens when you get 
 * (3 pt) Integrate user authentification
 This allows for the site to have authorized users as well as public users.  I want this for my site so I can regulate submissions to the suggestions list and so the suggestions list is not public.  I will use TLS/SSL.  I will use the node modules passport, passport-local, passport-local-mongoose, and express-session.  I will use a flag in order to determine which user is the administrator.
 
-* (1 pt) Use a CSS framework throughout site, customize
-This is the use of an already built CSS file to gain some features easily without having to build from the ground up.  Often this means linking to a given css file.  This is user friendly.  In addition, it is easy to customize, so your website can still look individual.  I will be using bootstrap.
+* (1 points) Use a CSS preprocesser
+This allows for ease of layout styling.  For instance, a variable can be assigned to a color or line of text which than can be reused.  I am using SASS.
 
 * (2 pt) Client side form validation
 This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript and html.  
+
+## Nota Bene
+
+The administrator has the username "admin" and the password "securePassword".  It is already in the database on i6.  My site recognizes the adminstrator by username.
