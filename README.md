@@ -62,6 +62,7 @@ var SuggestedList = new mongoose.Schema({
 ## Wireframes
 
 ![wireframes](img/wireframes.jpg)
+Note: The admin page no longer has remove from official list or remove from suggestions list and block user.  Only add to adaptations list and remove from suggestions list and add to official list.
 
 ## User Stories
 
@@ -94,7 +95,7 @@ var SuggestedList = new mongoose.Schema({
  This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.
 
 * (1 pt) Concatenation and minification of CSS and Javascript Files
-Concatenation and minification of CSS and Javascript files happens when you get rid of all newlines and condense each of the files into a .min file.  Machines don't need reader-friendly newlines, so this allows your program to run faster without any cost.  There are many minifiers out there.  For javascript files I will probably use JSMin, and for CSS perhaps YUI Compressor.  
+Concatenation and minification of CSS and Javascript files happens when you get rid of all newlines and condense each of the files into a .min file.  Machines don't need reader-friendly newlines, so this allows your program to run faster without any cost.  There are many minifiers out there.  For javascript files I will probably use JSMin, and for CSS perhaps YUI Compressor.  Note:  Did not concatenate jquery files with the files I wrote myself.
 
 * (3 pt) Integrate user authentification
 This allows for the site to have authorized users as well as public users.  I want this for my site so I can regulate submissions to the suggestions list and so the suggestions list is not public.  I will use TLS/SSL.  I will use the node modules passport, passport-local, passport-local-mongoose, and express-session.  I will use a flag in order to determine which user is the administrator.
