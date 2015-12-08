@@ -10,7 +10,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'A Semi-Comprehensive List of Little Mermaid Adaptations' });
 });
 router.get('/about', function(req, res) {
-	res.render('about', {title: 'About The Little Mermaid'});
+	if(req.user) {
+		res.render('about', {title: 'About The Little Mermaid', user: req.user, admin: req.user.username=="admin"});
+		
+	}
+	else {
+		res.render('about', {title: 'About The Little Mermaid', user: false, admin: false});
+	}
+	
 });
 
 router.get('/littleMermaid/adaptations', function(req, res) {
@@ -41,7 +48,7 @@ router.get('/littleMermaid/adaptations/search', function(req,res) {
 });
 
 router.get('/searchQuery', function(req, res, next) {
-  var OfficialList3 = OfficialList.find({}, function(err, adaptations, count) {
+  var OfficialList3 = OfficialList.find({country:req.query.country}, function(err, adaptations, count) {
   	if(err) {
   		res.send("An error occurred")
   	}
