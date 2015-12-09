@@ -104,7 +104,7 @@ This allows for the site to have authorized users as well as public users.  I wa
 This allows for ease of layout styling.  For instance, a variable can be assigned to a color or line of text which than can be reused.  I am using SASS.
 
 * (2 pt) Client side form validation
-This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript (like jquery) and html.  
+This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript (like jquery) and html.  Note:  I used HTML so that the year field must be a number and jquery to make sure the link starts with "http://" or "https://".
 
 ## Nota Bene
 
