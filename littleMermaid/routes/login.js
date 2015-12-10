@@ -132,18 +132,24 @@ router.post('/maintain/check', function(req,res) {
 		if(err) {
 			res.send("Enter All Required Fields");
 		}
-		
+		SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
+		if(err) {
+			res.send("An error occurred");
+		}
+		res.redirect(303,'/login/maintain');
+	});
 	});
 
 	});
+	/*	
 	SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
 		if(err) {
 			res.send("An error occurred");
 		}
-
-	});//.remove().exec;
 		res.redirect(303,'/login/maintain');
-	
+	});//.remove().exec;
+		//res.redirect(303,'/login/maintain');
+	*/
 	}
 	else {
 		res.send("Please Check only one at a time");
