@@ -108,4 +108,5 @@ This prevents users from entering harmful code into forms.  It controls what kin
 
 ## Nota Bene
 
-The administrator has the username "admin" and the password "securePassword".  It is already in the database on i6.  My site recognizes the adminstrator by username.
+* The administrator has the username "admin" and the password "securePassword".  It is already in the database on i6.  My site recognizes the adminstrator by username.  No other accounts have been created.  To create a regular user, go to the register page.
+* The form using AJAX is the [Search by Country Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations/search).
