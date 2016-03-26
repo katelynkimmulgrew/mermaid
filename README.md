@@ -59,54 +59,17 @@ var SuggestedList = new mongoose.Schema({
 });
 ```
 
-## Wireframes
-
-![wireframes](img/wireframes.jpg)
-Note: The admin page no longer has remove from official list or remove from suggestions list and block user.  Only add to adaptations list and remove from suggestions list and add to official list.
-
-## User Stories
-
-* as a visitor, I want to view the adaptations list so I know what to watch
-* as a registered user, I want to add an adaptation to the suggested list for consideration
-* as a visitor, I want to register so I can add adaptations to the suggested list for consideration
-* as a visitor, I want to search through the list of adaptations by country of origin
-* as the administrator, I want to remove suggestions from the suggestions list and add them to the official list
-
-## Site Map
-
-![site map](img/siteMap.jpg)
 
 ## List of pages
 
-* [Welcome Page](http://i6.cims.nyu.edu:10410/)
-* [About Page](http://i6.cims.nyu.edu:10410/about)
-* [Form to suggest an adaptation](http://i6.cims.nyu.edu:10410/login/suggest) - viewable only to users
-* [Form to log in](http://i6.cims.nyu.edu:10410/login)
-* [Form to register](http://i6.cims.nyu.edu:10410/login/register)
-* [You Are Logged In](http://i6.cims.nyu.edu:10410/login/in) - viewable only to users
-* [Official Adaptations Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations)
-* [Suggested Adaptations Page](http://i6.cims.nyu.edu:10410/login/suggestionsList) - viewable only to users
-* [Search by Country Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations/search)
-* [Maintain: The administrator page](http://i6.cims.nyu.edu:10410/login/maintain) - viewable only to administrator
+* Welcome Page
+* About Page
+* Form to suggest an adaptation - viewable only to users
+* Form to log in
+* Form to register
+* You Are Logged In - viewable only to users
+* Official Adaptations Page
+* Suggested Adaptations Page - viewable only to users
+* Search by Country Page
+* Maintain: The administrator page - viewable only to administrator
 
-## Research
-
-* (1 pt) Integrate visual Effects
- This incorparates javascript and CSS3 to create animation or effects when things are clicked.  It can make a button look 3D for example, or can make a button move when hovered over.  This is good to make the website user friendly and welcoming.  I will be using CSS3 mostly.  Note:  My effects are 1) links that wiggle 2) when a page loads the body fades in and 3) drop shadow on h1.
-
-* (1 pt) Concatenation and minification of CSS and Javascript Files
-Concatenation and minification of CSS and Javascript files happens when you get rid of all newlines and condense each of the files into a .min file.  Machines don't need reader-friendly newlines, so this allows your program to run faster without any cost.  There are many minifiers out there.  For javascript files I will probably use JSMin, and for CSS perhaps YUI Compressor.  Note:  Did not concatenate jquery files with the files I wrote myself.
-
-* (3 pt) Integrate user authentification
-This allows for the site to have authorized users as well as public users.  I want this for my site so I can regulate submissions to the suggestions list and so the suggestions list is not public.  I will use TLS/SSL.  I will use the node modules passport, passport-local, passport-local-mongoose, and express-session.  I will use a flag in order to determine which user is the administrator.
-
-* (1 points) Use a CSS preprocesser
-This allows for ease of layout styling.  For instance, a variable can be assigned to a color or line of text which than can be reused.  I am using SASS.
-
-* (2 pt) Client side form validation
-This prevents users from entering harmful code into forms.  It controls what kind of input can be entered.  This is good for my website because I don't want it to crash or be compromised.  For this I will use javascript (like jquery) and html.  Note:  I used HTML so that the year field must be a number and jquery to make sure the link starts with "http://" or "https://".
-
-## Nota Bene
-
-* The administrator has the username "admin" and the password "securePassword".  It is already in the database on i6.  My site recognizes the adminstrator by username.  No other accounts have been created.  To create a regular user, go to the register page.
-* The form using AJAX is the [Search by Country Page](http://i6.cims.nyu.edu:10410/littleMermaid/adaptations/search).
