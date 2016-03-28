@@ -17,6 +17,26 @@
 {{/each}}
 </ul>
 
+<p>List Addaptations with checkmarks</p>
+<form method="POST" action="/auth/maintain/remove">
+<ul>
+{{#each officialAdaptations}}
+<input type="radio"  name="radio" value = "{{director}}" ><li>
+  <ul>
+  <li>name: {{name}}</li>
+  <li>screenWriter: {{screenWriter}},</li>
+  <li>director: {{director}},</li>
+  <li>country: {{country}},</li>
+  <li>year: {{year}},</li>
+  <li>link: <a href="{{link}}">Click Here</a></li>
+  </ul>
+  </li></input>
+{{/each}}
+</ul>
+Submit to remove from official list
+<input type="submit">
+</form>
+
 <form method="POST" action="/auth/maintain/add">
 title <input type="text" id="name" name="name">
 director <input type="text" id="director" name="director">
@@ -45,7 +65,10 @@ link <input type="string" id="link" name="link">
   </li></input>
 {{/each}}
 </ul>
-<input type="submit">
+Submit to add to adaptations list and remove from suggestions list
+<input type="submit" name="add" value="submittedAdd">
+Submit to remove from suggestions list
+<input type="submit" name="remove" value="submittedRemove">
 </form>
 <div><a href="/">HomePage</a></div>
 <script src='/javascripts/jquery.js'></script>

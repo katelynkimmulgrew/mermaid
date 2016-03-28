@@ -115,8 +115,32 @@ router.post('/maintain/add', function(req,res) {
 	});
 });
 
-router.post('/maintain/check', function(req,res) {
+router.post('/maintain/remove', function(req,res) {
+	console.log(req.body)
 	
+	var checkedItems = req.body.radio;
+	OfficialList.findOneAndRemove({director:checkedItems}, function(err, object, count){
+		if(err) {
+			res.send("An error occurred");
+		}
+		res.redirect(303,'/auth/maintain');
+	});
+	
+});
+
+router.post('/maintain/check', function(req,res) {
+	console.log(req.body)
+	if(req.body.remove=="submittedRemove") { 
+	var checkedItems = req.body.radio;
+SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
+		if(err) {
+			res.send("An error occurred");
+		}
+		res.redirect(303,'/auth/maintain');
+	});
+	}
+	if(req.body.add=="submittedAdd") {
+
 	var checkedItems = req.body.radio;
 	//console.log(checkedItems);
 	if(typeof checkedItems === "string") {
@@ -155,10 +179,12 @@ router.post('/maintain/check', function(req,res) {
 	});//.remove().exec;
 		//res.redirect(303,'/auth/maintain');
 	*/
-	}
-	else {
+} 
+
+	} //end if req.body.add
+	/*else {
 		res.send("Please Check only one at a time");
-	}
+	}*/
 });
 
 //only meant for users
