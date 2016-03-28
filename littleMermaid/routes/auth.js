@@ -68,7 +68,7 @@ router.post('/register', function(req, res) {
       // NOTE: once you've registered, you should be logged in automatically
       // ...so call authenticate if there's no error
       passport.authenticate('local')(req, res, function() {
-        res.redirect('/login/in');
+        res.redirect('/auth/in');
       });
     }
   });   
@@ -182,11 +182,24 @@ SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, co
 } 
 
 	} //end if req.body.add
+	if(req.body.removeUserAndSubmission="removeUserAndSubmission") {
+		var checkedItems = req.body.radio;
+	SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, count){
+		User.findOneAndRemove({_id:object.user}, function(err2, object2, count2) {
+			if(err) {
+			res.send("An error occurred");
+		}
+		});
+		if(err) {
+			res.send("An error occurred");
+		}
+		res.redirect(303,'/auth/maintain');
+	});
+	}
 	/*else {
 		res.send("Please Check only one at a time");
 	}*/
 });
-
 //only meant for users
 router.get('/suggest', function(req, res, next) {
 	if (req.user) {
