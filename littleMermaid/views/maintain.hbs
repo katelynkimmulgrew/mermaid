@@ -17,7 +17,7 @@
 {{/each}}
 </ul>
 
-<p>List Addaptations with checkmarks</p>
+<p>List Official Adaptations with checkmarks</p>
 <form method="POST" action="/auth/maintain/remove">
 <ul>
 {{#each officialAdaptations}}
@@ -69,6 +69,8 @@ Submit to add to adaptations list and remove from suggestions list
 <input type="submit" name="add" value="submittedAdd">
 Submit to remove from suggestions list
 <input type="submit" name="remove" value="submittedRemove">
+Submit to remove user and user's submission
+<input type="submit" name="removeUserAndSubmission" value="removeUserAndSubmission">
 </form>
 <div><a href="/">HomePage</a></div>
 <script src='/javascripts/jquery.js'></script>
