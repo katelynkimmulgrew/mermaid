@@ -6,7 +6,7 @@ User = mongoose.model('User');
 OfficialList = mongoose.model('OfficialList');
 SuggestedList = mongoose.model('SuggestedList');
 
-var isAdmin = false;
+//var isAdmin = false;
 
 router.get('/in', function(req, res) {
 	if (req.user) {
@@ -38,9 +38,9 @@ router.post('/login', function(req,res,next) {
       	if(err) {
       		res.send("An error occurred");
       	}
-      	if(user.username=="admin" && user.password=="securePassword") {
+      	/*if(user.username=="admin") {
       		isAdmin==true;
-      	}
+      	}*/
         res.redirect('/auth/in');
       });
     } else {
