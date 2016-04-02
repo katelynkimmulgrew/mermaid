@@ -72,6 +72,24 @@ Submit to remove from suggestions list
 Submit to remove user and user's submission
 <input type="submit" name="removeUserAndSubmission" value="removeUserAndSubmission">
 </form>
+
+<p>List Users with checkmarks</p>
+<form method="POST" action="/auth/maintain/users">
+
+{{#each users}}
+
+<input type="radio"  name="radio" value = "{{username}}" >
+  
+  username: {{username}}
+  </input><br/>
+  
+{{/each}}
+
+Submit to delete user
+<input type="submit">
+</form>
+
+
 <div><a href="/">HomePage</a></div>
 <script src='/javascripts/jquery.js'></script>
   

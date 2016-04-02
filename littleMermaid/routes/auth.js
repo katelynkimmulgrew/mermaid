@@ -200,6 +200,16 @@ SuggestedList.findOneAndRemove({director:checkedItems}, function(err, object, co
 		res.send("Please Check only one at a time");
 	}*/
 });
+
+router.post('/maintain/users', function(req,res) {
+	User.findOneAndRemove({username:req.body.radio}, function(err2, object2, count2) {
+			if(err2) {
+			res.send("An error occurred");
+		}
+		res.redirect('/auth/maintain');
+		});
+	});
+
 //only meant for users
 router.get('/suggest', function(req, res, next) {
 	if (req.user) {
@@ -260,8 +270,21 @@ router.get('/maintain', function(req, res, next) {
 		if(err) {
 			res.send("An error occurred");
 		}
+
+		var userList = User.find({}, function(err, completeUsers, count) {
+		if(err) {
+			res.send("An error occurred");
+		}
+		var users = [];
+		for (var i=0; i<completeUsers.length;i++) {
+			if(completeUsers[i].username != "admin") {
+				users.push(completeUsers[i]);
+			}
+		}
+			res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations, users:users,  title: 'Admin Maintainence'} );
+		});
 	
-		res.render('maintain', {officialAdaptations: officialAdaptations, suggestedAdaptations: suggestedAdaptations, title: 'Admin Maintainence'} );
+		
 		});
 	});
 	} 
